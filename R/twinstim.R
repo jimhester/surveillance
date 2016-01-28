@@ -400,7 +400,7 @@ twinstim <- function (
         ## but do not parallelize for a memoised siaf.step (becomes slower)
         if (useParallel &&
             !is.null(attr(siaf, "knots")) && !is.null(attr(siaf, "maxRange")) &&
-            isTRUE(attr(environment(siaf$f)$ringAreas, "memoised"))) {
+            isTRUE(memoise::is.memoised(environment(siaf$f)$ringAreas))) {
             cores <- 1L
             useParallel <- FALSE
         }
